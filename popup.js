@@ -43,12 +43,19 @@ function createPromptElement(prompt, index) {
     useButton.dataset.index = index;
     useButton.addEventListener('click', () => openChat(index));
     
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.dataset.index = index;
+    editButton.classList.add('edit-button');
+    editButton.addEventListener('click', () => editPrompt(index));
+    
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
     deleteButton.dataset.index = index;
     deleteButton.addEventListener('click', () => deletePrompt(index));
     
     actions.appendChild(useButton);
+    actions.appendChild(editButton);
     actions.appendChild(deleteButton);
     
     div.appendChild(title);
@@ -102,5 +109,51 @@ function saveSettings() {
         setTimeout(() => {
             status.style.display = 'none';
         }, 2000);
+    });
+}
+
+function editPrompt(index) {
+    chrome.storage.sync.get(['prompts'], (result) => {
+        const prompts = result.prompts || [];
+        const prompt = prompts[index];
+        
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>Edit Prompt</h3>
+                <div class="input-container">
+                    <label>Prompt Name:</label>
+                    <input type="text" id="edit-prompt-name" value="${prompt.name}">
+                    <label>Prompt Template:</label>
+                    <textarea id="edit-prompt-text">${prompt.text}</textarea>
+                    <button id="save-edit" class="button-primary">Save Changes</button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        modal.style.display = 'block';
+        
+        modal.querySelector('.close-modal').onclick = () => {
+            modal.remove();
+        };
+        
+        modal.querySelector('#save-edit').onclick = () => {
+            const newName = modal.querySelector('#edit-prompt-name').value.trim();
+            const newText = modal.querySelector('#edit-prompt-text').value.trim();
+            
+            if (!newName || !newText) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            prompts[index] = { name: newName, text: newText };
+            chrome.storage.sync.set({ prompts }, () => {
+                loadPrompts();
+                modal.remove();
+            });
+        };
     });
 }

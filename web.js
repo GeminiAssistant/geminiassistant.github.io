@@ -93,11 +93,13 @@ function createPromptElement(prompt, index) {
         <p>${prompt.text.substring(0, 100)}...</p>
         <div class="prompt-actions">
             <button class="use-btn">Use</button>
+            <button class="edit-btn">Edit</button>
             <button class="delete-btn">Delete</button>
         </div>
     `;
     
     div.querySelector('.use-btn').addEventListener('click', () => usePrompt(prompt));
+    div.querySelector('.edit-btn').addEventListener('click', () => editPrompt(index));
     div.querySelector('.delete-btn').addEventListener('click', () => deletePrompt(index));
     
     return div;
@@ -255,4 +257,54 @@ function initializeChatInterface() {
             sendMessage().catch(console.error);
         });
     }
+}
+
+function editPrompt(index) {
+    webStorage.get('prompts').then(result => {
+        const prompts = result.prompts || [];
+        const prompt = prompts[index];
+        
+        // Create and show modal
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>Edit Prompt</h3>
+                <div class="input-container">
+                    <label>Prompt Name:</label>
+                    <input type="text" id="edit-prompt-name" value="${prompt.name}">
+                    <label>Prompt Template:</label>
+                    <textarea id="edit-prompt-text">${prompt.text}</textarea>
+                    <button id="save-edit" class="button-primary">Save Changes</button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        modal.style.display = 'block';
+        
+        // Handle close
+        const closeBtn = modal.querySelector('.close-modal');
+        closeBtn.onclick = () => {
+            modal.remove();
+        };
+        
+        // Handle save
+        const saveBtn = modal.querySelector('#save-edit');
+        saveBtn.onclick = async () => {
+            const newName = modal.querySelector('#edit-prompt-name').value.trim();
+            const newText = modal.querySelector('#edit-prompt-text').value.trim();
+            
+            if (!newName || !newText) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            prompts[index] = { name: newName, text: newText };
+            await webStorage.set({ prompts });
+            await loadPrompts();
+            modal.remove();
+        };
+    });
 }
