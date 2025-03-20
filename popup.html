@@ -1,210 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gemini Assistant</title>
-    <style>
-        :root {
-            --primary: #4a6bff;
-            --secondary: #6c49b8;
-            --light: #f0f4ff;
-            --dark: #2a2a4a;
-            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
-            --shadow: 0 4px 12px rgba(74, 107, 255, 0.15);
-        }
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            direction: ltr;
-            text-align: left;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light);
-            min-width: 320px;
-        }
-        @media (min-width: 768px) {
-            body { min-width: 400px; }
-        }
-        h3 {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            margin: 0;
-            padding: 20px;
-            text-align: left;
-            font-size: 18px;
-            box-shadow: 0 2px 8px rgba(74, 107, 255, 0.2);
-        }
-        .container {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(108, 73, 184, 0.1);
-            margin: 15px;
-            padding: 20px;
-        }
-        p {
-            margin: 10px 0 20px 0;
-            font-size: 14px;
-            color: #444;
-        }
-        .language-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        label {
-            display: flex;
-            align-items: center;
-            margin: 8px 0;
-            font-size: 14px;
-            color: #333;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            padding: 5px;
-            border-radius: 4px;
-        }
-        label:hover {
-            background-color: #f0f7e6;
-        }
-        input[type="checkbox"] {
-            margin-left: 8px;
-            width: 16px;
-            height: 16px;
-            accent-color: #749e00;
-        }
-        .api-section {
-            position: relative;
-            padding: 20px;
-            background: white;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .api-section label {
-            display: block;
-            margin-bottom: 8px;
-            color: #444;
-        }
-        input[type="text"], textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid rgba(74, 107, 255, 0.2);
-            border-radius: 8px;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-            background: white;
-        }
-        input[type="text"]:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(74, 107, 255, 0.1);
-        }
-        textarea {
-            min-height: 100px;
-            line-height: 1.5;
-            resize: vertical;
-        }
-        button {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 12px 20px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-        button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(74, 107, 255, 0.2);
-        }
-        #status {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--dark);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 30px;
-            box-shadow: var(--shadow);
-            animation: slideUp 0.3s ease;
-        }
-        @keyframes slideUp {
-            from { transform: translate(-50%, 100%); opacity: 0; }
-            to { transform: translate(-50%, 0); opacity: 1; }
-        }
-        .prompt-template {
-            position: relative;
-            background: white;
-            border: 1px solid rgba(74, 107, 255, 0.1);
-            border-radius: 12px;
-            padding: 16px;
-            margin: 12px 0;
-            transition: all 0.3s ease;
-        }
-        .prompt-template:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-        .prompt-template h4 {
-            margin: 0 0 8px 0;
-            color: var(--dark);
-            font-size: 16px;
-        }
-        .prompt-template p {
-            color: #666;
-            font-size: 14px;
-            line-height: 1.5;
-            margin: 0 0 16px 0;
-        }
-        .prompt-actions {
-            display: flex;
-            gap: 8px;
-        }
-        .prompt-actions button {
-            flex: 1;
-            padding: 8px 16px;
-            font-size: 14px;
-            font-weight: 500;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-        }
-        .prompt-actions button:first-child {
-            background: var(--gradient);
-        }
-        .prompt-actions button:last-child {
-            background: #ff4a4a;
-        }
-    </style>
+    <link rel="stylesheet" href="web.css">
 </head>
-<body>
-    <h3>Gemini Assistant</h3>
+
+<body class="popup-page">
+
     <div class="container">
-        <div class="api-section">
-            <label>API Key:</label>
-            <input type="text" id="api-key" placeholder="Enter your Gemini API key">
-        </div>
-        
-        <div class="api-section">
-            <label>Create New Prompt:</label>
-            <input type="text" id="prompt-name" placeholder="Name your prompt template">
-            <textarea id="prompt-text" 
-                    placeholder="Enter your prompt template... Use <TEXT> as placeholder for user input"
-                    rows="4">
-            </textarea>
-            <button type="button" id="add-prompt">Create Prompt</button>
+        <div class="section api-section">
+            <h3 class="section-title">API Settings</h3>
+            <div class="section-content">
+                <label>API Key:</label>
+                <input type="text" id="api-key" placeholder="Enter your Gemini API key">
+            </div>
         </div>
 
-        <div class="api-section">
-            <label>Saved Prompts:</label>
-            <div id="saved-prompts"></div>
+        <div class="section prompt-section">
+            <h3 class="section-title">Create Prompt</h3>
+            <div class="section-content">
+                <label>Prompt Name:</label>
+                <input type="text" id="prompt-name" placeholder="Name your prompt template">
+                <label>Prompt Template:</label>
+                <textarea id="prompt-text" placeholder="Enter your prompt template..."></textarea>
+                <button type="button" id="add-prompt" class="button-primary">Create Prompt</button>
+            </div>
         </div>
-        
-        <button type="button" id="save-settings">Save Settings</button>
-        <p id="status" style="display: none; color: var(--primary);">✓ Settings saved successfully!</p>
+
+        <div class="section prompts-list">
+            <h3 class="section-title">Saved Prompts</h3>
+            <div class="section-content" id="saved-prompts"></div>
+        </div>
+
+        <div class="section footer-section">
+            <div class="section-content">
+                <button type="button" id="save-settings" class="button-primary w-full">Save Settings</button>
+                <div id="status" class="status-message" hidden></div>
+            </div>
+        </div>
     </div>
     <script src="popup.js"></script>
 </body>
+
 </html>

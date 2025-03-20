@@ -4,145 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gemini Chat</title>
-    <style>
-        :root {
-            --primary: #4a6bff;
-            --secondary: #6c49b8;
-            --light: #f0f4ff;
-            --dark: #2a2a4a;
-        }
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background: var(--light);
-        }
-        .prompt-info {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 15px 20px;
-            font-weight: 500;
-        }
-        .chat-container {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .message {
-            max-width: 80%;
-            padding: 12px 16px;
-            border-radius: 12px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            position: relative;
-            padding: 16px 20px;
-            line-height: 1.5;
-            font-size: 15px;
-            transition: all 0.3s ease;
-        }
-        .message:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .user-message {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            margin-left: auto;
-            border-bottom-right-radius: 4px;
-        }
-        .assistant-message {
-            background: white;
-            color: var(--dark);
-            margin-right: auto;
-            border-bottom-left-radius: 4px;
-        }
-        .message.assistant-message:last-child {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-        .input-container {
-            padding: 20px;
-            background: white;
-            border-top: 1px solid rgba(74, 107, 255, 0.1);
-            position: sticky;
-            bottom: 0;
-            background: white;
-            padding: 20px;
-            box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
-            z-index: 100;
-        }
-        .input-container textarea {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid var(--primary);
-            border-radius: 5px;
-            resize: none;
-            font-family: inherit;
-            direction: ltr;
-            padding: 16px;
-            line-height: 1.5;
-            font-size: 16px;
-            border: 2px solid rgba(74, 107, 255, 0.2);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-        textarea:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(74, 107, 255, 0.1);
-        }
-        .input-container button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        @media (min-width: 768px) {
-            .chat-container {
-                max-width: 800px;
-                margin: 0 auto;
-                padding: 40px;
-            }
-            
-            .message {
-                max-width: 70%;
-            }
-        }
-        .input-wrapper {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-        .typing-indicator {
-            display: inline-block;
-            padding: 12px 24px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            animation: pulse 1.5s infinite;
-        }
-    </style>
+    <link rel="stylesheet" href="web.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
-    <div class="prompt-info" id="prompt-info"></div>
+<body class="chat-page">
+    <header class="chat-header">
+        <div class="model-info">
+            <span class="model-name">Gemini Assistant</span>
+            <span class="model-version">Pro</span>
+        </div>
+    </header>
+
     <div class="chat-container" id="chat-container"></div>
+
     <div class="input-container">
         <div class="input-wrapper">
-            <textarea id="user-input" rows="3" placeholder="Type your message here..."></textarea>
-            <button id="send-message">Send Message</button>
+            <textarea 
+                id="user-input" 
+                placeholder="Message Gemini Assistant..."
+                rows="1"
+            ></textarea>
+            <button id="send-message" class="send-button">
+                <span class="material-icons">send</span>
+            </button>
         </div>
     </div>
     <script src="chat.js"></script>

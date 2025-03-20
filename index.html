@@ -5,73 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gemini Assistant - Web Version</title>
     <link rel="stylesheet" href="web.css">
-    <style>
-        :root {
-            --primary: #4a6bff;
-            --secondary: #6c49b8;
-            --light: #f0f4ff;
-            --dark: #2a2a4a;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 2rem;
-            text-align: center;
-            color: white;
-        }
-        
-        .main-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 2rem;
-        }
-        
-        @media (max-width: 768px) {
-            .main-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        #chat-interface {
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            background: white;
-            height: 80vh;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div class="header">
         <h1>Gemini Assistant</h1>
-        <p>Web Interface & Chrome Extension</p>
+        <p>AI-Powered Conversation</p>
     </div>
     
     <div class="main-container">
         <aside class="settings-panel">
-            <!-- Reuse popup.html content here -->
-            <div class="api-section">
-                <label>API Key:</label>
-                <input type="text" id="api-key" placeholder="Enter your Gemini API key">
-                <button id="save-settings">Save Settings</button>
-                <p id="status" style="display: none;">Settings saved successfully!</p>
+            <div class="section api-section">
+                <h3 class="section-title">
+                    <span class="material-icons">key</span>
+                    API Settings
+                </h3>
+                <div class="section-content">
+                    <div class="input-container">
+                        <label>API Key:</label>
+                        <input type="text" id="api-key" placeholder="Enter your Gemini API key">
+                    </div>
+                </div>
             </div>
             
-            <div class="api-section">
-                <label>Create New Prompt:</label>
-                <input type="text" id="prompt-name" placeholder="Name your prompt template">
-                <textarea id="prompt-text" placeholder="Enter your prompt template..."></textarea>
-                <button id="add-prompt">Create Prompt</button>
+            <div class="section prompt-section">
+                <h3 class="section-title">
+                    <span class="material-icons">add_circle</span>
+                    Create Prompt
+                </h3>
+                <div class="section-content">
+                    <div class="input-container">
+                        <label>Prompt Name:</label>
+                        <input type="text" id="prompt-name" placeholder="Name your prompt template">
+                        <label>Prompt Template:</label>
+                        <textarea id="prompt-text" placeholder="Enter your prompt template..."></textarea>
+                        <button id="add-prompt" class="button-primary">Create Prompt</button>
+                    </div>
+                </div>
             </div>
             
-            <div id="saved-prompts"></div>
+            <div class="section prompts-list">
+                <h3 class="section-title">
+                    <span class="material-icons">bookmark</span>
+                    Saved Prompts
+                </h3>
+                <div class="section-content" id="saved-prompts"></div>
+            </div>
         </aside>
         
-        <main id="chat-interface">
-            <!-- Reuse chat.html content here -->
-        </main>
+        <main id="chat-interface" class="chat-section"></main>
     </div>
     <script src="web.js"></script>
 </body>
