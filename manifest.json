@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Gemini Assistant",
+  "version": "0.2",
+  "description": "A Chrome extension for interacting with Google's Gemini AI model",
+  "permissions": [
+    "storage",
+    "tabs",
+    "scripting",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://generativelanguage.googleapis.com/*"
+  ],
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "web_accessible_resources": [{
+    "resources": [
+      "chat.html",
+      "popup.html",
+      "web.js",
+      "chat.js",
+      "web.css",
+      "icon.png",
+      "*.js"
+    ],
+    "matches": ["<all_urls>"]
+  }],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "minimum_chrome_version": "88"
+}
