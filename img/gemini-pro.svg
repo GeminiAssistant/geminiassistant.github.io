@@ -1,0 +1,8 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="100" cy="100" r="100" fill="#F1EFFE"/>
+  <path d="M100 35L65 60V110L100 135L135 110V60L100 35Z" fill="#8C55E4"/>
+  <path d="M100 35L65 60L100 85L135 60L100 35Z" fill="#A67BFF"/>
+  <path d="M135 60V110L100 85V135L135 110V60Z" fill="#7B46D3"/>
+  <path d="M65 60V110L100 85V135L65 110V60Z" fill="#9B67E6"/>
+  <text x="100" y="180" font-family="Arial" font-size="18" font-weight="bold" fill="#8C55E4" text-anchor="middle">Pro</text>
+</svg>

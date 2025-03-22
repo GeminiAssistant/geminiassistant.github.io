@@ -1,0 +1,10 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="100" cy="100" r="100" fill="#FEF7E0"/>
+  <path d="M100 35L65 60V110L100 135L135 110V60L100 35Z" fill="#FBBC05"/>
+  <path d="M100 35L65 60L100 85L135 60L100 35Z" fill="#FDD663"/>
+  <path d="M135 60V110L100 85V135L135 110V60Z" fill="#F5B400"/>
+  <path d="M65 60V110L100 85V135L65 110V60Z" fill="#FBBC05"/>
+  <path d="M85 50C85 50 95 65 100 65C105 65 115 50 115 50" stroke="#F5B400" stroke-width="3"/>
+  <path d="M85 120C85 120 95 135 100 135C105 135 115 120 115 120" stroke="#F5B400" stroke-width="3"/>
+  <text x="100" y="180" font-family="Arial" font-size="18" font-weight="bold" fill="#FBBC05" text-anchor="middle">Creative</text>
+</svg>

@@ -1,0 +1,255 @@
+/*/ DARK MODE /*/
+body.dark-mode, .dark-mode .bg-white {
+    background: #181818 !important;
+}
+.dark-mode #loading{
+    background-color: #202020;
+    background-image: linear-gradient(147deg, #000000 0%, #212121 74%);
+}
+.dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4, .dark-mode h5, .dark-mode h6 {
+    color: #FFF;
+}
+.dark-mode header {
+    background: #111111;
+    border-bottom: 1px solid #3d3d3d;
+}
+.dark-mode footer {
+    background: #111111;    
+}
+.dark-mode .default-title, .dark-mode p, .dark-mode .card-ai-job span {
+    color: #E6E6E6;
+}
+.dark-mode .card-ai {
+    border-radius: 0px;
+    overflow: hidden;
+    background: #2d2d2d;
+    margin-bottom: 2em;
+    border:0;
+}
+.dark-mode .card-ai-name h3 {
+    color: #FFF;
+}
+.dark-mode .card-ai:hover {
+    box-shadow: 4px 4px 11px #12121238;
+}
+.dark-mode footer ul li, .dark-mode footer ul li a, .dark-mode footer p {
+    color: #E6E6E6;
+}
+.dark-mode footer ul li:hover, .dark-mode footer ul li a:hover {
+    color: #FFF;
+}
+.dark-mode .offcanvas-custom {
+    background: #2b2b2b;
+}
+.dark-mode #inner-page {
+    background: #2b2b2b;
+}
+.dark-mode .form-filter {
+    background: #1c1c1c;
+    border: 1px solid #3d3d3d;
+}
+.dark-mode .chat-background {
+    background: #141414;
+    border: 1px solid #3f3f3f;
+}
+.dark-mode .ai-chat-top-name h4 {
+    color: #FFFFFF;
+}
+.dark-mode .ai-chat-top-job {
+    color: #E6E6E6;
+}
+.dark-mode .col-contacts-border {
+    border-right: 1px solid #3f3f3f;
+}
+.dark-mode .ai-contacts-item {
+    border-bottom: 1px solid #3f3f3f;   
+}
+.dark-mode .ai-contacts-name {
+    color: #FFF;
+}
+.dark-mode .ai-contacts-item-active {
+    background: #3d3d3d;
+    border-left: 3px solid #4caf50;
+}
+.dark-mode .ai-contacts-scroll {
+    background: #212121;    
+}
+.dark-mode .ai-contacts-top strong {
+    color: #FFF;
+}
+.dark-mode .ai-contacts-top span {
+    color: #E6E6E6;
+}
+.dark-mode .ai-contacts-top, .dark-mode .ai-chat-top {
+    border-bottom: 1px solid #3f3f3f;
+}
+.dark-mode .ai-contacts-item:hover {
+    background: #101010;
+}
+.dark-mode .chat-frame {
+    background-color: #202020;
+    background-image: linear-gradient(147deg, #000000 0%, #212121 74%);
+}
+.dark-mode .message-container, .dark-mode .thread-user .message-container {
+    background: #1e1e1e;
+    border-bottom: 0;
+}
+.dark-mode .message-container .user-name h5 {
+    color: #FFF;
+}
+.dark-mode .chat-response {
+    color: #EFEEF3;
+}
+.dark-mode .date-chat {
+    color: #8d8d8d;
+}
+.dark-mode .thread-ai .message-container {
+    margin-right: 7em;
+    border-bottom: 0;
+    border: 1px solid #4f4f4f;
+}
+.dark-mode .thread-user .message-container {
+    border: 1px solid #4f4f4f;  
+}
+.dark-mode .message-container::before {
+    left: -11px;
+    border-right: 10px solid #333237;
+}
+.dark-mode .form-floating>.form-select {
+    border: 1px solid #4f4f4f;
+    background: #333237;
+    color: #FFF;
+}
+.dark-mode .form-floating>label {
+    color: #ababab;
+}
+.dark-mode .chat-input textarea, .dark-mode .chat-input input {
+    border: 1px solid #626263;
+    background: #333237;
+    color: #FFF;
+}
+.dark-mode .icons-options img, .dark-mode .copy-text img {
+    filter: brightness(0) saturate(100%) invert(100%);
+}
+.dark-mode .ai-contacts-scroll a {
+    text-decoration: none;
+}
+.dark-mode .ai-contacts-scroll::-webkit-scrollbar {
+  width: 4px; 
+}
+.dark-mode #overflow-chat::-webkit-scrollbar-thumb {
+  background-color: #888; 
+  border-radius: 5px; 
+}
+.dark-mode .copy-text, .dark-mode .copy-text:hover {
+    border: 1px solid #FFF;
+    color: #FFF;
+}
+.dark-mode .message-area-bottom {
+    border-top: 1px solid #3f3f3f;
+}
+.dark-mode .dropdown-menu.show {
+    background: #4d4d4f;
+}
+.dark-mode .dropdown-item {
+    color: #FFF;
+}
+.dark-mode .dropdown-item:hover {
+    background: #3b3b3b;
+    color: #FFF;
+}
+.dark-mode .ai-contacts-job {
+    color: #afafaf;
+}
+.dark-mode .white-card {
+    background: #2d2d2d;
+}
+.dark-mode .content-panel h4 {
+    color: #FFF;
+}
+.dark-mode .panel-ai-chat {
+    border: 1px solid #474747;
+    background: #272727;
+}
+.dark-mode .ai-chat-created span {
+    font-size: 14px;
+    color: #999999;
+}
+.dark-mode .wrapper-ai-number-chats-messages span {
+    color: #FFF;
+}
+.dark-mode .user-panel-options li a {
+    color: #FFF;
+}
+.dark-mode .user-panel-options li a {
+    border-bottom: 1px solid #474747;
+}
+.dark-mode .user-panel-options li a:hover {
+    color: #c3e5ff;
+}
+.dark-mode .form-floating>.form-control, .dark-mode .form-floating>.form-control-plaintext {
+    padding: 1rem 0.75rem;
+    border: 1px solid #4f4f4f;
+    background: #1e1e1e;
+    color: #FFF;
+}
+.dark-mode .white-card .alert, .dark-mode .list-group-item, .dark-mode .form-control {
+    border: 1px solid #474747;
+    background: #272727;
+    color: #FFF;
+}
+.dark-mode .color-blue {
+    color: #7ac7ff;
+}
+.dark-mode .list-group-item:hover {
+    background: #181818;
+}
+.dark-mode .white-card table, .dark-mode .login-heading, .dark-mode .form-check-label {
+    color: #FFF;
+}
+.dark-mode .modal-content {
+    background: #4d4d4f;
+}
+.dark-mode .btn-close, .dark-mode .modal-content {
+    color: #FFF;
+}
+.dark-mode .modal-header {
+    border-bottom: 1px solid #757575;
+}
+.dark-mode .modal-footer {
+    border-top: 1px solid #757575;
+}
+.dark-mode .btn-close {
+    display: none;
+}
+.dark-mode .table>:not(caption)>*>* {
+    border-color: #535353;
+}
+.dark-mode .pricing .card-title, .dark-mode .text-muted {
+    color: #FFF !important;
+}
+.dark-mode .pricing .card {
+    background: #3f3f3f;
+}
+.dark-mode hr {
+    color: #676767;
+}
+.dark-mode .card-body ul li, .dark-mode .card-body ul li a {
+    color: #FFF;
+}
+.dark-mode .ai-chat-top {
+    background: #252525;
+    box-shadow: none;
+}
+.dark-mode .col-options-input {
+    background: #252525;
+}
+.dark-mode .message-area-bottom {
+    background: #252525;    
+}
+.dark-mode .swal2-container.swal2-center>.swal2-popup{
+    background: #333333;
+}
+.dark-mode .swal2-html-container{
+    color: #FFF;
+}

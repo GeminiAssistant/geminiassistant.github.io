@@ -1,60 +1,275 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gemini Assistant - Web Version</title>
-    <link rel="stylesheet" href="web.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-<body>
-    <div class="header">
-        <h1>Gemini Assistant</h1>
-        <p>AI-Powered Conversation</p>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gemini Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Nunito+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <link href="style/bootstrap.min.css" rel="stylesheet">
+    <link href="style/app.css?v1-1" rel="stylesheet">
+    <link href="style/dark-mode.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/highlight.min.css" />    
+    <link rel="stylesheet" href="style/highlight.dark.min.css" />    
+    <link rel="stylesheet" href="style/toastr.min.css" />    
+    <link href="style/sweetalert2.min.css" rel="stylesheet">
+    <link itemprop="url" href="img/gemini-thumb.jpg">
+    <link itemprop="thumbnailUrl" href="img/gemini-thumb.jpg">
+    <meta name="theme-color" content="#8c55e4">
+    <meta property="og:title" content="Gemini Assistant" />
+    <link rel="apple-touch-icon" sizes="180x180" href="fav/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="fav/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="fav/favicon-16x16.png">
+    <link rel="manifest" href="fav/site.webmanifest">
+    <link rel="mask-icon" href="fav/safari-pinned-tab.svg" color="#8c55e4">    
+  </head>
+  <body>
+  <div id="loading">
+      <div class="spinner-border text-light spinner" role="status"></div>  
+  </div>
+
+  <div class="modal fade" tabindex="-1" id="modalDefault">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{button_close_modal}}"></button>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{button_close_modal}}</button>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-md-start justify-content-sm-center">
+          <a href="index.html"><h1 class="gemini-logo">Gemini Assistant</h1></a>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-sm-center">
+          <span class="header-slogan">
+            <i class="bi bi-robot"></i><span class="translate-slogan">{{slogan}}</span>
+            <div class="theme-icon" id="toggle-button">
+                <i class="bi bi-sun fs-4" id="theme-icon"></i>            
+            </div>            
+        </span>
+        </div>
+      </div>
+    </div>    
+  </header>  
+
+  <section id="hero" class="align-items-center hide-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-12 text-center">
+          <h1>Experience Google's Most Advanced AI</h1>
+          <p class="translate-sub-title">Powered by Google AI - Your intelligent conversation partner</p>
+        </div>
+      </div>
+    </div> 
+  </section>
+
+  <section class="hide-section" id="ai-team">
+    <div class="container section-spacing">
+      <div class="row">
+        <div class="col text-center">
+          <h2 class="default-title">Chat with Gemini</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col text-center">
+          <p>Experience the power of Google's most advanced AI assistant</p>
+        </div>
+      </div>
+
+      <div class="row mt-3" id="load-character"></div>
+    </div>
+  </section>
+
+  <section id="chat-background" style="display:none;">
+    <div class="container pt-lg-4 pb-lg-4">
+      <div class="row chat-background">
+        <div class="col-lg-3 col-md-3 col-sm12 p-0 col-contacts-border">
+          <div class="ai-contacts-top">
+            <strong>Gemini Models</strong>
+            <span>Select your AI assistant</span>
+          </div>
+          <div class="ai-contacts-scroll"></div>
+        </div>
+
+        <div class="col p-0 col-main-chat">
+          <div class="ai-chat-top">
+            <div class="row align-items-center">
+              <div class="col-md-7 col-lg-8 col-7">
+                <div class="wrapper-ai-chat-top">
+                  <div class="ai-chat-top-image">
+                    <img src="img/gemini-avatar.svg" alt="Gemini" onerror="this.src='img/gemini-avatar.svg'">
+                  </div>
+                  <div class="ai-chat-top-info">
+                    <div class="ai-chat-top-name">
+                      <h4>Gemini<span class="online-bullet"></span></h4>
+                    </div>
+                    <div class="ai-chat-top-job">AI Assistant</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-5 col-lg-4 col-5">
+                <div class="icons-options">
+                  <div class="dropdown-center">
+                    <img class="toggle_employees_list" src="img/icon-user-list.svg" alt="{{list_employees_label}}" title="{{list_employees_label}}">
+                    <img class="about_modal" src="img/icon-about.svg" alt="{{about_label}}" title="{{about_label}}" data-bs-toggle="modal" data-bs-target="#modalDefault">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img src="img/icon-config.svg" alt="Config" title="Config">
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <li id="close-chat"><a class="dropdown-item" href="#" onclick="closeChat()"><img src="img/icon-close.svg"> <span>{{button_close}}</span></a></li>
+                      <li id="clear-chat"><a class="dropdown-item" href="#" onclick="clearChat()"><img src="img/clear-chat.svg"> <span>{{button_clear_chat}}</span></a></li>
+                      <li id="clear-all-chats"><a class="dropdown-item" href="#" onclick="clearChat('all')"><img src="img/icon-trash.svg"> <span>{{button_clear_all_chats}}</span></a></li>
+                      <li id="download-chat"><a class="dropdown-item" href="#" onclick="handleDownload()"><img src="img/icon-download.svg"> <span>{{button_download_chat}}</span></a></li>
+                      <li id="download-chat-pdf"><a class="dropdown-item" href="#" onclick="downloadPdf()"><img src="img/icon-download-pdf.svg"> <span>{{button_download_chat_pdf}}</span></a></li>
+                      <li><a class="dropdown-item" href="#" onclick="showApiKeySettings()"><img src="img/icon-key.svg"> <span>API Settings</span></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ia-chat-content">
+            <div class="row">
+              <div class="cell">
+                <div class="chat-frame">
+                  <div id="overflow-chat"></div>
+                </div>
+
+                <div class="message-area-bottom">
+                  <div class="col col-options-input">
+                    <div class="btn-options-input"><div class="arrow-up"></div></div>
+
+                    <div class="form-floating" id="display_chat_language_output">
+                      <select class="form-select" id="selectLanguage"></select>
+                      <label for="selectLanguage">{{label_display_chat_language_output}}</label>
+                    </div>
+
+                    <div class="form-floating" id="display_chat_tone">
+                      <div class="form-floating">
+                        <select class="form-select" id="selectTone"></select>
+                        <label for="selectTone">{{label_display_chat_tone}}</label>
+                      </div>
+                    </div>
+
+                    <div class="form-floating" id="display_chat_writing_style">
+                      <select class="form-select" id="selectWritingStyle"></select>
+                      <label for="selectWritingStyle">{{label_display_chat_writing_style}}</label>
+                    </div>                  
+                  </div>                
+
+                  <div class="chat-input">
+                    <span class="character-typing">
+                      <div><b class='wait'>{{wait}}</b> <span></span>  <b class='is_typing'>{{is_typing}}</b></div>
+                    </span>
+                    <textarea name="chat" id="chat" placeholder="{{input_placeholder}}" maxlength="200"></textarea>
+                    <img src="img/mic-start.svg" id="microphone-button" style="display:none">
+                    <button class="submit btn-send-chat btn btn-primary" tabindex="0"><span>{{button_send}}</span> <img src="img/icon-send.svg"></button>
+                    <button class="submit btn-cancel-chat btn btn-primary" tabindex="0" style="display:none"><img src="img/btn_stop.svg"> <span class="stop-chat-label">{{button_cancel}}</span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="cell d-flex justify-content-center">
+        <p class="gemini-footer">Gemini Assistant - Powered by Google AI</p>
+        <img onclick="backToTop();" src="img/icon-top.svg" alt="{{back_to_top}}" title="{{back_to_top}}">
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <section id="feedback"><span></span></section>
+  <script src="js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="js/jquery-3.6.0.min.js"></script>
+  <script src="js/highlight.min.js"></script>
+  <script src="js/toastr.min.js"></script>
+  <script src="js/sweetalert2.all.min.js"></script>
+  <script src="js/sse.js"></script>
+  <script src="js/pdfmake.min.js"></script>
+  <script src="js/vfs_fonts.js"></script>
+  <script src="js/app.js?v1-3"></script>
+  <style>
+    /* Gemini Assistant Styles */
+    .gemini-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin: 0;
+      font-size: 1.8rem;
+    }
     
-    <div class="main-container">
-        <aside class="settings-panel">
-            <div class="section api-section">
-                <h3 class="section-title">
-                    <span class="material-icons">key</span>
-                    API Settings
-                </h3>
-                <div class="section-content">
-                    <div class="input-container">
-                        <label>API Key:</label>
-                        <input type="text" id="api-key" placeholder="Enter your Gemini API key">
-                    </div>
-                </div>
-            </div>
-            
-            <div class="section prompt-section">
-                <h3 class="section-title">
-                    <span class="material-icons">add_circle</span>
-                    Create Prompt
-                </h3>
-                <div class="section-content">
-                    <div class="input-container">
-                        <label>Prompt Name:</label>
-                        <input type="text" id="prompt-name" placeholder="Name your prompt template">
-                        <label>Prompt Template:</label>
-                        <textarea id="prompt-text" placeholder="Enter your prompt template..."></textarea>
-                        <button id="add-prompt" class="button-primary">Create Prompt</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="section prompts-list">
-                <h3 class="section-title">
-                    <span class="material-icons">bookmark</span>
-                    Saved Prompts
-                </h3>
-                <div class="section-content" id="saved-prompts"></div>
-            </div>
-        </aside>
-        
-        <main id="chat-interface" class="chat-section"></main>
-    </div>
-    <script src="web.js"></script>
-</body>
+    .gemini-hero {
+      padding: 4rem 0;
+    }
+    
+    .gemini-hero h1 {
+      font-size: 3.5rem;
+      color: #8c55e4;
+      margin-bottom: 1.5rem;
+    }
+    
+    .gemini-gradient-bar {
+      height: 4px;
+      background: linear-gradient(90deg, #8c55e4, #4285f4, #0f9d58);
+      width: 150px;
+      margin: 2rem auto;
+      border-radius: 2px;
+    }
+    
+    .btn-primary {
+      background-color: #8c55e4;
+      border-color: #8c55e4;
+    }
+    
+    .btn-primary:hover {
+      background-color: #7b46d3;
+      border-color: #7b46d3;
+    }
+    
+    .gemini-footer {
+      margin-right: 15px;
+      color: #666;
+    }
+
+    .online-bullet {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: #0f9d58;
+      border-radius: 50%;
+      margin-left: 8px;
+    }
+
+    .ai-contacts-item.ai-contacts-item-active {
+      border-left: 4px solid #8c55e4;
+    }
+    
+    .default-title {
+      color: #8c55e4;
+    }
+  </style>
+  </body>
 </html>
