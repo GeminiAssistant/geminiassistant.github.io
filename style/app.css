@@ -17,14 +17,14 @@ header a {
     text-decoration: none;
   }
 p, a, span, button, label, small, textarea, select, option, em, strong {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Bahij Segoe UI", "Segoe UI", Tahoma, sans-serif,'Nunito Sans', sans-serif;
 }
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Bahij Segoe UI", "Segoe UI", Tahoma,'Montserrat', sans-serif;
   font-weight: 700;
 }
 .gemini-logo {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Bahij Segoe UI", "Segoe UI", Tahoma,'Montserrat', sans-serif;
     font-weight: 700;
     color: #FFFFFF;
     margin: 0;
@@ -83,7 +83,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1.5em;
 }
 #hero .btn{
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Bahij Segoe UI", "Segoe UI", Tahoma,'Montserrat', sans-serif;
     background: linear-gradient(180deg, #e33cff 0%, #9a0cb3 100%);
     border-radius: 6px;
     padding: 12px 1.5em;
@@ -150,7 +150,7 @@ p{
     color: #434343;   
 }
 .card-ai .btn{
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Bahij Segoe UI", "Segoe UI", Tahoma,'Montserrat', sans-serif;
     border-radius: 6px;
     font-size: 16px;
     font-weight: bold;
@@ -229,7 +229,7 @@ p{
     color: #070707;
     font-size: 16px;
     font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Bahij Segoe UI", "Segoe UI", Tahoma,'Montserrat', sans-serif;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;  
@@ -360,7 +360,7 @@ p{
     margin-bottom: 0.3em;
 }
 .chat-response{
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: "Bahij Segoe UI", "Segoe UI", Tahoma,'Nunito Sans', sans-serif;
 }
 .message-container .message-text{
     color: #2c2c2c;
@@ -452,7 +452,7 @@ p{
     padding: 1em 1.5em;
     font-size: 18px;
     font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Bahij Segoe UI", "Segoe UI", Tahoma,'Montserrat', sans-serif;
     border: 0;
     display: flex;
     align-items: center;
