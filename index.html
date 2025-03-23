@@ -70,6 +70,23 @@
         <div class="col-12 text-center">
           <h1>Experience Google's Most Advanced AI</h1>
           <p class="translate-sub-title">Powered by Google AI - Your intelligent conversation partner</p>
+          
+          <!-- API Key section that shows when no API key is available -->
+          <div id="api-key-section" style="display:none;" class="mt-4">
+               <h4 class="alert-heading">API Key Required</h4>
+              <p>To use Gemini Assistant, you need to add a Google Gemini API key.</p>
+              <hr>
+              <p class="mb-0">Get your free API key from Google AI Studio and add it below to start using the assistant.</p>
+             
+            <div class="api-buttons mt-3">
+              <button class="btn btn-primary me-2" onclick="showApiKeySettings()">
+                <i class="bi bi-key"></i> Add API Key
+              </button>
+              <a href="https://ai.google.dev/gemini-api/docs/api-key" target="_blank" class="btn btn-outline-primary text-white">
+                <i class="bi bi-box-arrow-up-right"></i> Get Free API Key
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div> 
